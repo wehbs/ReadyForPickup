@@ -2,7 +2,8 @@
 # Build a Developer ID-signed, notarized, Sparkle-ready ReadyForPickup DMG.
 #
 # Flow: build Release (unsigned) -> sign Sparkle nested code then the app
-# -> DMG -> notarize (notarytool --wait) -> staple -> generate/sign appcast.
+# (entitlements with the bundle ID filled in, then checked) -> DMG ->
+# notarize (notarytool --wait) -> staple -> generate/sign appcast.
 # The script prints the DMG path, its SHA-256, and the generated appcast.xml
 # path. It does NOT publish the GitHub release or commit appcast.xml; see
 # README "Releasing" for those steps (gh must use --repo wehbs/...).
@@ -54,10 +55,32 @@ if [[ -d "$SPARKLE_FW" ]]; then
   [[ -e "$SPARKLE_FW/Versions/B/Updater.app" ]] && codesign --force --timestamp --options runtime --sign "$IDENTITY" "$SPARKLE_FW/Versions/B/Updater.app"
   codesign --force --timestamp --options runtime --sign "$IDENTITY" "$SPARKLE_FW"
 fi
+# Only Xcode's own signing step expands build settings in entitlements, so
+# sign with a copy that has $(PRODUCT_BUNDLE_IDENTIFIER) filled in from the
+# built app. 0.3.2 shipped the literal string, which blocks Sparkle installs.
+BUNDLE_ID=$(/usr/libexec/PlistBuddy -c "Print :CFBundleIdentifier" "$APP/Contents/Info.plist")
+ENTITLEMENTS="$WORK/ReadyForPickup.entitlements"
+sed 's/\$(PRODUCT_BUNDLE_IDENTIFIER)/'"$BUNDLE_ID"'/g' InventoryWatch/InventoryWatch.entitlements > "$ENTITLEMENTS"
 codesign --force --timestamp --options runtime \
-  --entitlements InventoryWatch/InventoryWatch.entitlements \
+  --entitlements "$ENTITLEMENTS" \
   --sign "$IDENTITY" "$APP"
 codesign --verify --deep --strict "$APP"
+
+# The sandboxed app must be allowed to look up Sparkle's installer services
+# <bundle ID>-spks and <bundle ID>-spki, or updates fail at the install step.
+SIGNED_ENTITLEMENTS=$(codesign -d --entitlements - --xml "$APP" 2>/dev/null)
+if [[ "$SIGNED_ENTITLEMENTS" == *'$('* || "$SIGNED_ENTITLEMENTS" == *'${'* ]]; then
+  echo "ERROR: The signed app's entitlements still contain an unexpanded build setting:" >&2
+  echo "$SIGNED_ENTITLEMENTS" >&2
+  exit 1
+fi
+for SERVICE in "$BUNDLE_ID-spks" "$BUNDLE_ID-spki"; do
+  if [[ "$SIGNED_ENTITLEMENTS" != *"<string>$SERVICE</string>"* ]]; then
+    echo "ERROR: The signed app's entitlements don't allow mach-lookup of $SERVICE." >&2
+    exit 1
+  fi
+done
+echo "Sparkle mach-lookup exceptions: $BUNDLE_ID-spks, $BUNDLE_ID-spki"
 
 mkdir -p "$WORK/stage"; cp -R "$APP" "$WORK/stage/"
 ln -s /Applications "$WORK/stage/Applications"
