@@ -30,8 +30,10 @@ ReadyForPickup 0.3.2+ uses [Sparkle 2.9.6](https://github.com/sparkle-project/Sp
 
 Run `Scripts/build-notarized-release.sh` (see its header). It builds, signs Sparkle's nested code then the app, makes the DMG, notarizes (`notarytool submit --wait` — this can take hours; the submission ID is printed — if running detached, poll `xcrun notarytool info <id> --key … --key-id … --issuer …` every ~2 min, and on `Accepted` staple/validate and check `spctl` on the mounted app), staples, then generates/signs `appcast.xml` with Sparkle's `generate_appcast` (fails safe if the Sparkle tools are missing). Then, in order:
 
-1. Commit + push the version bump and the generated `appcast.xml`.
-2. `gh release create v<VERSION> /tmp/readyforpickup-release/ReadyForPickup-<VERSION>.dmg --repo wehbs/ReadyForPickup --title "ReadyForPickup <VERSION>" --notes "…"` — **always pass `--repo wehbs/ReadyForPickup`** (`gh` otherwise defaults to the upstream worthbak repo here).
-3. Verify: the release asset downloads (HTTP 200), its SHA-256 matches the local DMG, the mounted app passes `spctl -a -vvv` (`accepted source=Notarized Developer ID`), and the live appcast enclosure URL/signature match. Note the DMG itself may show `spctl` "no usable signature" (it isn't codesigned) — the app inside is what matters.
+1. Commit + push the version bump: both `MARKETING_VERSION` and `CURRENT_PROJECT_VERSION` (Sparkle compares the latter). Don't commit `appcast.xml` yet.
+2. `gh release create v<VERSION> /tmp/readyforpickup-release/ReadyForPickup-<VERSION>.dmg --repo wehbs/ReadyForPickup --target <bump commit SHA> --title "ReadyForPickup <VERSION>" --notes "…"` — **always pass `--repo wehbs/ReadyForPickup`** (`gh` otherwise defaults to the upstream worthbak repo here).
+3. Verify: the release asset downloads (HTTP 200), its SHA-256 matches the local DMG, and the mounted app passes `spctl -a -vvv` (`accepted source=Notarized Developer ID`). Note the DMG itself may show `spctl` "no usable signature" (it isn't codesigned) — the app inside is what matters.
+4. Commit + push the generated `appcast.xml`. This is what makes the update live, so it goes last: pushed earlier, the feed would point at a DMG that doesn't exist yet.
+5. Verify the live feed (`https://raw.githubusercontent.com/wehbs/ReadyForPickup/main/appcast.xml`, cached for up to 5 minutes) lists the new version with the right enclosure URL and signature.
 
 Do not delete old releases.

@@ -84,7 +84,7 @@ echo "Sparkle mach-lookup exceptions: $BUNDLE_ID-spks, $BUNDLE_ID-spki"
 
 mkdir -p "$WORK/stage"; cp -R "$APP" "$WORK/stage/"
 ln -s /Applications "$WORK/stage/Applications"
-hdiutil create -volname ReadyForPickup -srcfolder "$WORK/stage" -ov -format UDZO "$DMG"
+diskutil image create from --format UDZO --volumeName ReadyForPickup "$WORK/stage" "$DMG"
 
 read KEY_ID ISSUER_ID KEY_PATH < <(python3 -c "
 import json,pathlib
@@ -112,4 +112,4 @@ if [[ -f "$WORK/appcast/appcast.xml" ]]; then cp "$WORK/appcast/appcast.xml" ./a
 python3 -c "import xml.dom.minidom,sys; xml.dom.minidom.parse('appcast.xml'); print('appcast.xml: well-formed XML')"
 shasum -a 256 "$DMG"
 echo "Done: $DMG"
-echo "Appcast updated: $(pwd)/appcast.xml (review, commit + push it, then create the GitHub release)"
+echo "Appcast updated: $(pwd)/appcast.xml (review it; create the GitHub release first, then commit + push it)"
