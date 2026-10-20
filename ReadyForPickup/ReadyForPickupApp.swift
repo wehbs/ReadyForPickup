@@ -1,6 +1,6 @@
 //
-//  InventoryWatchApp.swift
-//  InventoryWatch
+//  ReadyForPickupApp.swift
+//  ReadyForPickup
 //
 //  Created by Worth Baker on 11/8/21.
 //

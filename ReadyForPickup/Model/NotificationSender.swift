@@ -1,6 +1,6 @@
 //
 //  NotificationSender.swift
-//  InventoryWatch
+//  ReadyForPickup
 //
 //  Created by Worth Baker on 10/27/22.
 //

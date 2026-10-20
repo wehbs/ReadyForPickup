@@ -21,9 +21,9 @@ import sys
 from pathlib import Path
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
-CATALOG_FILE = REPO_ROOT / "InventoryWatch" / "ProductCatalog.json"
-STORE_FILE = REPO_ROOT / "InventoryWatch" / "Stores_LocalBootstrap.json"
-PRODUCT_TYPE_FILE = REPO_ROOT / "InventoryWatch" / "Model" / "ModelTypes" / "ProductType.swift"
+CATALOG_FILE = REPO_ROOT / "ReadyForPickup" / "ProductCatalog.json"
+STORE_FILE = REPO_ROOT / "ReadyForPickup" / "Stores_LocalBootstrap.json"
+PRODUCT_TYPE_FILE = REPO_ROOT / "ReadyForPickup" / "Model" / "ModelTypes" / "ProductType.swift"
 
 # StoreAddress's optional strings (missing or null is fine).
 OPTIONAL_ADDRESS_KEYS = ("address1", "address2", "stateName", "stateCode", "postalCode")

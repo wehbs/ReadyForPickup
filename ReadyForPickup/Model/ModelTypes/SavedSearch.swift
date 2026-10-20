@@ -1,6 +1,6 @@
 //
 //  SavedSearch.swift
-//  InventoryWatch
+//  ReadyForPickup
 //
 
 import Foundation

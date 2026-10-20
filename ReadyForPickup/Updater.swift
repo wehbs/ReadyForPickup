@@ -1,6 +1,6 @@
 //
 //  Updater.swift
-//  InventoryWatch
+//  ReadyForPickup
 //
 //  Sparkle 2.x updater wiring. The private EdDSA key lives only in
 //  the login Keychain (created by Sparkle's generate_keys tool);

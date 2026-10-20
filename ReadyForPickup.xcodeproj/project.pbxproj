@@ -14,7 +14,7 @@
 		38E20B012A6B0001000000D1 /* PushoverClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E20B022A6B0001000000D1 /* PushoverClient.swift */; };
 		385886B529082831003D3C80 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 385886B429082831003D3C80 /* ViewModel.swift */; };
 		385886B72908283F003D3C80 /* DefaultsVendor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 385886B62908283F003D3C80 /* DefaultsVendor.swift */; };
-		386FDC572739DA7300C1BAC2 /* InventoryWatchApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386FDC562739DA7300C1BAC2 /* InventoryWatchApp.swift */; };
+		386FDC572739DA7300C1BAC2 /* ReadyForPickupApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386FDC562739DA7300C1BAC2 /* ReadyForPickupApp.swift */; };
 		386FDC592739DA7300C1BAC2 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386FDC582739DA7300C1BAC2 /* ContentView.swift */; };
 		386FDC5B2739DA7300C1BAC2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 386FDC5A2739DA7300C1BAC2 /* Assets.xcassets */; };
 		386FDC5E2739DA7300C1BAC2 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 386FDC5D2739DA7300C1BAC2 /* Preview Assets.xcassets */; };
@@ -46,12 +46,12 @@
 		38E20B022A6B0001000000D1 /* PushoverClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushoverClient.swift; sourceTree = "<group>"; };
 		385886B429082831003D3C80 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		385886B62908283F003D3C80 /* DefaultsVendor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultsVendor.swift; sourceTree = "<group>"; };
-		386FDC532739DA7300C1BAC2 /* InventoryWatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InventoryWatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		386FDC562739DA7300C1BAC2 /* InventoryWatchApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryWatchApp.swift; sourceTree = "<group>"; };
+		386FDC532739DA7300C1BAC2 /* ReadyForPickup.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ReadyForPickup.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		386FDC562739DA7300C1BAC2 /* ReadyForPickupApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadyForPickupApp.swift; sourceTree = "<group>"; };
 		386FDC582739DA7300C1BAC2 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		386FDC5A2739DA7300C1BAC2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		386FDC5D2739DA7300C1BAC2 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		386FDC5F2739DA7300C1BAC2 /* InventoryWatch.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = InventoryWatch.entitlements; sourceTree = "<group>"; };
+		386FDC5F2739DA7300C1BAC2 /* ReadyForPickup.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ReadyForPickup.entitlements; sourceTree = "<group>"; };
 		386FDC67273A18F800C1BAC2 /* SKUData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SKUData.swift; sourceTree = "<group>"; };
 		386FDC69273A200000C1BAC2 /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		3885D54B2891711E00BD6A78 /* FulfillmentStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FulfillmentStore.swift; sourceTree = "<group>"; };
@@ -99,7 +99,7 @@
 		386FDC4A2739DA7300C1BAC2 = {
 			isa = PBXGroup;
 			children = (
-				386FDC552739DA7300C1BAC2 /* InventoryWatch */,
+				386FDC552739DA7300C1BAC2 /* ReadyForPickup */,
 				A10000082A6B000100000008 /* LICENSE.md */,
 				A100000A2A6B00010000000A /* Sparkle-LICENSE.txt */,
 				386FDC542739DA7300C1BAC2 /* Products */,
@@ -109,15 +109,15 @@
 		386FDC542739DA7300C1BAC2 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				386FDC532739DA7300C1BAC2 /* InventoryWatch.app */,
+				386FDC532739DA7300C1BAC2 /* ReadyForPickup.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		386FDC552739DA7300C1BAC2 /* InventoryWatch */ = {
+		386FDC552739DA7300C1BAC2 /* ReadyForPickup */ = {
 			isa = PBXGroup;
 			children = (
-				386FDC562739DA7300C1BAC2 /* InventoryWatchApp.swift */,
+				386FDC562739DA7300C1BAC2 /* ReadyForPickupApp.swift */,
 				A10000052A6B000100000005 /* Updater.swift */,
 				A10000062A6B000100000006 /* Info.plist */,
 				386FDC582739DA7300C1BAC2 /* ContentView.swift */,
@@ -130,10 +130,10 @@
 				38D0C3A1273C60B500A7DE65 /* Countries.swift */,
 				386FDC5A2739DA7300C1BAC2 /* Assets.xcassets */,
 				38E4279D273EF542006BF6D7 /* Credits.rtf */,
-				386FDC5F2739DA7300C1BAC2 /* InventoryWatch.entitlements */,
+				386FDC5F2739DA7300C1BAC2 /* ReadyForPickup.entitlements */,
 				386FDC5C2739DA7300C1BAC2 /* Preview Content */,
 			);
-			path = InventoryWatch;
+			path = ReadyForPickup;
 			sourceTree = "<group>";
 		};
 		386FDC5C2739DA7300C1BAC2 /* Preview Content */ = {
@@ -163,9 +163,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		386FDC522739DA7300C1BAC2 /* InventoryWatch */ = {
+		386FDC522739DA7300C1BAC2 /* ReadyForPickup */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 386FDC622739DA7300C1BAC2 /* Build configuration list for PBXNativeTarget "InventoryWatch" */;
+			buildConfigurationList = 386FDC622739DA7300C1BAC2 /* Build configuration list for PBXNativeTarget "ReadyForPickup" */;
 			buildPhases = (
 				386FDC4F2739DA7300C1BAC2 /* Sources */,
 				386FDC502739DA7300C1BAC2 /* Frameworks */,
@@ -175,12 +175,12 @@
 			);
 			dependencies = (
 			);
-			name = InventoryWatch;
+			name = ReadyForPickup;
 			packageProductDependencies = (
 				A10000032A6B000100000003 /* Sparkle */,
 			);
-			productName = InventoryWatch;
-			productReference = 386FDC532739DA7300C1BAC2 /* InventoryWatch.app */;
+			productName = ReadyForPickup;
+			productReference = 386FDC532739DA7300C1BAC2 /* ReadyForPickup.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -198,7 +198,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 386FDC4E2739DA7300C1BAC2 /* Build configuration list for PBXProject "InventoryWatch" */;
+			buildConfigurationList = 386FDC4E2739DA7300C1BAC2 /* Build configuration list for PBXProject "ReadyForPickup" */;
 			compatibilityVersion = "Xcode 13.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -214,7 +214,7 @@
 				A10000022A6B000100000002 /* XCRemoteSwiftPackageReference "Sparkle" */,
 			);
 			targets = (
-				386FDC522739DA7300C1BAC2 /* InventoryWatch */,
+				386FDC522739DA7300C1BAC2 /* ReadyForPickup */,
 			);
 		};
 /* End PBXProject section */
@@ -259,7 +259,7 @@
 				38E20B012A6B0001000000D1 /* PushoverClient.swift in Sources */,
 				38D0C3A2273C60B500A7DE65 /* Countries.swift in Sources */,
 				38E20A012A6B0001000000C1 /* SavedSearch.swift in Sources */,
-				386FDC572739DA7300C1BAC2 /* InventoryWatchApp.swift in Sources */,
+				386FDC572739DA7300C1BAC2 /* ReadyForPickupApp.swift in Sources */,
 				3885D5502891714400BD6A78 /* ProductType.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -389,18 +389,18 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = InventoryWatch/InventoryWatch.entitlements;
+				CODE_SIGN_ENTITLEMENTS = ReadyForPickup/ReadyForPickup.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 0.3.5;
 				DEAD_CODE_STRIPPING = YES;
-				DEVELOPMENT_ASSET_PATHS = "\"InventoryWatch/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"ReadyForPickup/Preview Content\"";
 				DEVELOPMENT_TEAM = 2JRPLKN666;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = InventoryWatch/Info.plist;
+				INFOPLIST_FILE = ReadyForPickup/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = ReadyForPickup;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.shopping";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
@@ -423,18 +423,18 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = InventoryWatch/InventoryWatch.entitlements;
+				CODE_SIGN_ENTITLEMENTS = ReadyForPickup/ReadyForPickup.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 0.3.5;
 				DEAD_CODE_STRIPPING = YES;
-				DEVELOPMENT_ASSET_PATHS = "\"InventoryWatch/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"ReadyForPickup/Preview Content\"";
 				DEVELOPMENT_TEAM = 2JRPLKN666;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = InventoryWatch/Info.plist;
+				INFOPLIST_FILE = ReadyForPickup/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = ReadyForPickup;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.shopping";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
@@ -475,7 +475,7 @@
 /* End XCSwiftPackageProductDependency section */
 
 /* Begin XCConfigurationList section */
-		386FDC4E2739DA7300C1BAC2 /* Build configuration list for PBXProject "InventoryWatch" */ = {
+		386FDC4E2739DA7300C1BAC2 /* Build configuration list for PBXProject "ReadyForPickup" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				386FDC602739DA7300C1BAC2 /* Debug */,
@@ -484,7 +484,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		386FDC622739DA7300C1BAC2 /* Build configuration list for PBXNativeTarget "InventoryWatch" */ = {
+		386FDC622739DA7300C1BAC2 /* Build configuration list for PBXNativeTarget "ReadyForPickup" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				386FDC632739DA7300C1BAC2 /* Debug */,

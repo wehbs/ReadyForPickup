@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Regenerate InventoryWatch/Stores_LocalBootstrap.json from Apple's store list.
+"""Regenerate ReadyForPickup/Stores_LocalBootstrap.json from Apple's store list.
 
 The JSON endpoint the app used to read
 (https://www.apple.com/rsp-web/store-list?locale=en_US) returns HTTP 404
@@ -9,7 +9,7 @@ props.pageProps.storeList: one entry per country with `locale`, `hasStates`
 and `state` ([{name, store: [...]}]).
 
 This script fetches that page (one request) and rewrites the bundled file
-in the shape InventoryWatch/Model/ModelTypes/StoreBootstrap.swift decodes:
+in the shape ReadyForPickup/Model/ModelTypes/StoreBootstrap.swift decodes:
 
     {"storeListData": [
       {"locale": "en_US", "hasStates": true,
@@ -58,7 +58,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
-STORE_FILE = REPO_ROOT / "InventoryWatch" / "Stores_LocalBootstrap.json"
+STORE_FILE = REPO_ROOT / "ReadyForPickup" / "Stores_LocalBootstrap.json"
 STORE_LIST_URL = "https://www.apple.com/retail/storelist/"
 
 USER_AGENT = ("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 "

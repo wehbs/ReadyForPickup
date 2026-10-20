@@ -27,7 +27,7 @@ if [[ -z "${IDENTITY:-}" ]]; then
 fi
 echo "Signing identity: $IDENTITY"
 
-VERSION=$(grep -m1 "MARKETING_VERSION" InventoryWatch.xcodeproj/project.pbxproj | sed -E 's/.*= ([0-9.]+);/\1/')
+VERSION=$(grep -m1 "MARKETING_VERSION" ReadyForPickup.xcodeproj/project.pbxproj | sed -E 's/.*= ([0-9.]+);/\1/')
 WORK=/tmp/readyforpickup-release
 APP="$WORK/DerivedData/Build/Products/Release/ReadyForPickup.app"
 DMG="$WORK/ReadyForPickup-$VERSION.dmg"
@@ -37,7 +37,7 @@ rm -rf "$WORK"; mkdir -p "$WORK"
 # either would ship an app with no countries or no stores.
 python3 -I Scripts/check-bundled-data.py
 
-xcodebuild -project InventoryWatch.xcodeproj -scheme InventoryWatch \
+xcodebuild -project ReadyForPickup.xcodeproj -scheme ReadyForPickup \
   -configuration Release -derivedDataPath "$WORK/DerivedData" \
   build CODE_SIGNING_ALLOWED=NO | tail -2
 
@@ -65,7 +65,7 @@ fi
 # built app. 0.3.2 shipped the literal string, which blocks Sparkle installs.
 BUNDLE_ID=$(/usr/libexec/PlistBuddy -c "Print :CFBundleIdentifier" "$APP/Contents/Info.plist")
 ENTITLEMENTS="$WORK/ReadyForPickup.entitlements"
-sed 's/\$(PRODUCT_BUNDLE_IDENTIFIER)/'"$BUNDLE_ID"'/g' InventoryWatch/InventoryWatch.entitlements > "$ENTITLEMENTS"
+sed 's/\$(PRODUCT_BUNDLE_IDENTIFIER)/'"$BUNDLE_ID"'/g' ReadyForPickup/ReadyForPickup.entitlements > "$ENTITLEMENTS"
 codesign --force --timestamp --options runtime \
   --entitlements "$ENTITLEMENTS" \
   --sign "$IDENTITY" "$APP"

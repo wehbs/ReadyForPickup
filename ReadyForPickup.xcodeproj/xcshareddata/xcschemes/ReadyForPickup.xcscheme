@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "386FDC522739DA7300C1BAC2"
-               BuildableName = "InventoryWatch.app"
-               BlueprintName = "InventoryWatch"
-               ReferencedContainer = "container:InventoryWatch.xcodeproj">
+               BuildableName = "ReadyForPickup.app"
+               BlueprintName = "ReadyForPickup"
+               ReferencedContainer = "container:ReadyForPickup.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -45,9 +45,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "386FDC522739DA7300C1BAC2"
-            BuildableName = "InventoryWatch.app"
-            BlueprintName = "InventoryWatch"
-            ReferencedContainer = "container:InventoryWatch.xcodeproj">
+            BuildableName = "ReadyForPickup.app"
+            BlueprintName = "ReadyForPickup"
+            ReferencedContainer = "container:ReadyForPickup.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -62,9 +62,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "386FDC522739DA7300C1BAC2"
-            BuildableName = "InventoryWatch.app"
-            BlueprintName = "InventoryWatch"
-            ReferencedContainer = "container:InventoryWatch.xcodeproj">
+            BuildableName = "ReadyForPickup.app"
+            BlueprintName = "ReadyForPickup"
+            ReferencedContainer = "container:ReadyForPickup.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

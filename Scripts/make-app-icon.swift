@@ -1,7 +1,7 @@
 #!/usr/bin/env swift
 // Draws ReadyForPickup's app icon with CoreGraphics and writes every size
 // the asset catalog needs, plus the project site's logo:
-//   InventoryWatch/Assets.xcassets/AppIcon.appiconset/icon_*.png + Contents.json
+//   ReadyForPickup/Assets.xcassets/AppIcon.appiconset/icon_*.png + Contents.json
 //   docs/logo.png (512 px)
 //
 // The icon is a white paper shopping bag with grey rope handles and a green
@@ -18,7 +18,7 @@ import CoreGraphics
 /// Design canvas: Apple's 1024 px macOS icon template (tile in the middle 824 px).
 let canvas: CGFloat = 1024
 let repoRoot = URL(fileURLWithPath: #filePath).deletingLastPathComponent().deletingLastPathComponent()
-let iconSet = repoRoot.appendingPathComponent("InventoryWatch/Assets.xcassets/AppIcon.appiconset")
+let iconSet = repoRoot.appendingPathComponent("ReadyForPickup/Assets.xcassets/AppIcon.appiconset")
 
 func rgb(_ hex: UInt32, _ a: CGFloat = 1) -> CGColor {
     CGColor(srgbRed: CGFloat((hex >> 16) & 0xff) / 255, green: CGFloat((hex >> 8) & 0xff) / 255,

@@ -1,6 +1,6 @@
 //
 //  SKUData.swift
-//  InventoryWatch
+//  ReadyForPickup
 //
 //  Created by Worth Baker on 11/8/21.
 //

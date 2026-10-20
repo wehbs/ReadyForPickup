@@ -1,6 +1,6 @@
 //
 //  SettingsView.swift
-//  InventoryWatch
+//  ReadyForPickup
 //
 //  Created by Worth Baker on 11/9/21.
 //

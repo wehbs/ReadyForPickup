@@ -1,6 +1,6 @@
 //
 //  ModelLoader.swift
-//  InventoryWatch
+//  ReadyForPickup
 //
 //  Created by Worth Baker on 10/25/22.
 //

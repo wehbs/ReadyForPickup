@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Regenerate InventoryWatch/ProductCatalog.json, the SKUs the app watches per country.
+"""Regenerate ReadyForPickup/ProductCatalog.json, the SKUs the app watches per country.
 
 File format (ProductCatalog.json):
 
@@ -98,8 +98,8 @@ from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
 REPO_ROOT = HERE.parent
-CATALOG_FILE = REPO_ROOT / "InventoryWatch" / "ProductCatalog.json"
-STORE_FILE = REPO_ROOT / "InventoryWatch" / "Stores_LocalBootstrap.json"
+CATALOG_FILE = REPO_ROOT / "ReadyForPickup" / "ProductCatalog.json"
+STORE_FILE = REPO_ROOT / "ReadyForPickup" / "Stores_LocalBootstrap.json"
 
 
 def _load_store_list_tool():

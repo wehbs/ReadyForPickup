@@ -1,6 +1,6 @@
 //
 //  StoreBootstrap.swift
-//  InventoryWatch
+//  ReadyForPickup
 //
 //  Created by Worth Baker on 10/1/22.
 //

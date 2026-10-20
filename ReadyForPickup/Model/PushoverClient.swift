@@ -1,6 +1,6 @@
 //
 //  PushoverClient.swift
-//  InventoryWatch
+//  ReadyForPickup
 //
 
 import Foundation
