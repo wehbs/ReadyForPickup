@@ -7,7 +7,7 @@
 # notarize (notarytool --wait) -> staple -> generate/sign appcast.
 # The script prints the DMG path, its SHA-256, and the generated appcast.xml
 # path. It does NOT publish the GitHub release or commit appcast.xml; see
-# README "Releasing" for those steps (gh must use --repo wehbs/...).
+# README "Releasing" for those steps.
 #
 # Sparkle / notarization prerequisites:
 #   * Developer ID Application cert in login Keychain (Account Holder only).
