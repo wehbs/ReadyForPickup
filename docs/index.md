@@ -8,6 +8,8 @@ ReadyForPickup is a macOS app that watches Apple Store pickup availability for i
 
 Earlier versions and release notes are on the [Releases page](https://github.com/wehbs/ReadyForPickup/releases).
 
+![ReadyForPickup watching iPhone 18 Pro pickup at Apple Fifth Avenue and nearby New York stores, with two models marked as preferred](screenshot.png)
+
 ## What it does
 
 - Watches Apple Store pickup stock for current iPhones and Macs in 15 countries: the US, Australia, Austria, Canada, China mainland, France, Germany, India, Italy, Japan, Malaysia, South Korea, Spain, the United Arab Emirates and the UK

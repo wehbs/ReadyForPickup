@@ -2,3 +2,14 @@ title: ReadyForPickup
 logo: ./logo.png
 description: A macOS app that watches Apple Store pickup availability for iPhone and Mac and alerts you when your configuration is ready nearby.
 theme: jekyll-theme-minimal
+# The link-preview image for X, Slack, Messages and the like, drawn by
+# Scripts/make-social-preview.swift.
+defaults:
+  - scope:
+      path: ""
+    values:
+      image:
+        path: /social-preview.png
+        width: 1200
+        height: 630
+        alt: ReadyForPickup, a macOS app that alerts you when the iPhone or Mac you want is ready for pickup at an Apple Store near you

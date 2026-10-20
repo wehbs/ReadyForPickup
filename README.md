@@ -2,15 +2,13 @@
 
 ReadyForPickup — a macOS app that watches Apple Store pickup availability for iPhone and Mac and alerts you when your configuration is ready nearby.
 
+![ReadyForPickup watching iPhone 18 Pro pickup at Apple Fifth Avenue and nearby New York stores, with two models marked as preferred](docs/screenshot.png)
+
 ## Download
 
 **[Download ReadyForPickup.dmg](https://github.com/wehbs/ReadyForPickup/releases/latest/download/ReadyForPickup.dmg)** (always the latest version), open it, and drag ReadyForPickup into Applications. Earlier versions and release notes are on the **[Releases page](https://github.com/wehbs/ReadyForPickup/releases)**. Or use the project site: https://wehbs.github.io/ReadyForPickup/
 
-> **Note:** builds from v0.3.1 onward are Developer ID-signed and notarized by Apple, so they open with a normal double-click (earlier builds, e.g. v0.3.0, were unsigned for distribution and needed Privacy & Security -> Open Anyway on first launch).
-
 ## About this fork
-
-Forked from worthbak/inventory-checker-app (GPL-3.0)
 
 This is a modernized fork of [worthbak's InventoryWatch](https://github.com/worthbak/inventory-checker-app) (thanks, Worth!). Since the 2023 upstream release it has been updated for macOS 13+, Apple's current pickup API, the current iPhone and Mac lineup in 15 countries, a 2.0-style three-pane interface with multiple saved searches, auto-refresh with throttle backoff, and Pushover phone notifications (bring your own Pushover app token, entered in Settings). It was renamed from InventoryWatch to ReadyForPickup in October 2026 and relaunched as a new app (bundle ID `com.wehbs.ReadyForPickup`), so nothing carries over from InventoryWatch: saved searches, preferences and Pushover keys start fresh.
 
@@ -20,7 +18,7 @@ Project site: https://wehbs.github.io/ReadyForPickup/
 
 ## Countries
 
-Each search watches one country's stores. Pick the country in the search's inspector, above the store picker: changing it picks a store there and keeps the search's preferred models and custom SKU only if that country's model list has them too (most part numbers differ by country). **Settings → Default country** sets where new searches start. Searches saved by 0.3.4 and earlier, which all used the app-wide country set in Settings, keep that country.
+Each search watches one country's stores. Pick the country in the search's inspector, above the store picker: changing it picks a store there and keeps the search's preferred models and custom SKU only if that country's model list has them too (most part numbers differ by country). **Settings → Default country** sets where new searches start.
 
 Supported: the United States, Australia, Austria, Canada, China mainland, France, Germany, India, Italy, Japan, Malaysia, South Korea, Spain, the United Arab Emirates and the United Kingdom. Every model watched in a country was found in that country's own pickup API. Outside the US, iPhone names are Apple's local ones (e.g. Japanese or French); Mac names are the US spec names. Not supported: Hong Kong (its pickup API rejects the store locations the app sends), Macao (no online store), and Apple's other store countries (Belgium, Brazil, Mexico, the Netherlands, Singapore, Sweden, Switzerland, Taiwan, Thailand and Türkiye) until their models are verified.
 
@@ -33,9 +31,11 @@ The app bundles two data files, each rebuilt by a script (Python 3.9+, standard 
 
 Run `update-store-list.py` before every release (stores open and close), and before `update-catalog.py`, which checks models at real stores. Run `update-catalog.py` when Apple's lineup changes (new iPhones each September, new Macs) after updating the US entry, or to add a country (see `COUNTRIES` in the script). A new product line also needs a `ProductType` case and an entry in the script's page tables. After editing either file by hand, run `Scripts/check-bundled-data.py`: the app reads each file as a whole, so one bad value would drop every country or store.
 
-## App icon
+## App icon and site images
 
-The app icon and the project site's logo (`docs/logo.png`) are drawn in code by `Scripts/make-app-icon.swift`: a white paper shopping bag with grey rope handles and a green check, on a blue macOS icon tile. It uses neither Apple's logo nor SF Symbols, which may not appear in app icons. To change the icon, edit the script and run `swift Scripts/make-app-icon.swift`; it rewrites every size in `ReadyForPickup/Assets.xcassets/AppIcon.appiconset` and the site logo.
+The app icon, the project site's logo (`docs/logo.png`) and its favicon (`docs/favicon.png`) are drawn in code by `Scripts/make-app-icon.swift`: a white paper shopping bag with grey rope handles and a green check, on a blue macOS icon tile. It uses neither Apple's logo nor SF Symbols, which may not appear in app icons. To change the icon, edit the script and run `swift Scripts/make-app-icon.swift`; it rewrites every size in `ReadyForPickup/Assets.xcassets/AppIcon.appiconset`, the site logo and the favicon.
+
+The site's link-preview image (`docs/social-preview.png`, the picture X and other apps show for a link to the site) is drawn by `Scripts/make-social-preview.swift` from the logo and the app screenshot (`docs/screenshot.png`, also shown on the site and above). Run `swift Scripts/make-social-preview.swift` after changing either.
 
 ## Auto-updates (Sparkle)
 
@@ -43,7 +43,6 @@ ReadyForPickup uses [Sparkle 2.10.0](https://github.com/sparkle-project/Sparkle)
 
 - **Update feed:** `https://raw.githubusercontent.com/wehbs/ReadyForPickup/main/appcast.xml` — a file in this repo (on `main`), chosen so releases are version-controlled, reviewable, and don't depend on a separate hosting service. The DMG enclosures it points to are GitHub Release assets.
 - **Signing key:** updates are EdDSA-signed. The *private* key lives only in the maintainer's Mac login Keychain (created by Sparkle's `generate_keys`; service `https://sparkle-project.org`, account `ed25519`) — it is never in this repo. Only the public key (`SUPublicEDKey`) is embedded in the app's `Info.plist`.
-- **One-time manual update:** v0.3.1 and earlier were built *without* Sparkle, and v0.3.2 was signed without the sandbox entitlements Sparkle's installer needs, so none of them can install updates themselves. Download v0.3.3 (or later) manually once from the Releases page; after that, updates install automatically.
 
 ## Releasing
 

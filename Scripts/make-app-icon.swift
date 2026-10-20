@@ -1,8 +1,9 @@
 #!/usr/bin/env swift
 // Draws ReadyForPickup's app icon with CoreGraphics and writes every size
-// the asset catalog needs, plus the project site's logo:
+// the asset catalog needs, plus the project site's logo and favicon:
 //   ReadyForPickup/Assets.xcassets/AppIcon.appiconset/icon_*.png + Contents.json
 //   docs/logo.png (512 px)
+//   docs/favicon.png (64 px, the tile alone, so it fills a browser tab's icon)
 //
 // The icon is a white paper shopping bag with grey rope handles and a green
 // check on its front, on a blue macOS icon tile. It is drawn from scratch:
@@ -213,6 +214,20 @@ func render(pixels: Int) -> CGImage {
     return ctx.makeImage()!
 }
 
+/// Renders just the tile (the design's middle 824 px), filling the image.
+func renderTile(pixels: Int) -> CGImage {
+    let ctx = CGContext(data: nil, width: pixels, height: pixels, bitsPerComponent: 8, bytesPerRow: 0,
+                        space: CGColorSpace(name: CGColorSpace.sRGB)!,
+                        bitmapInfo: CGImageAlphaInfo.premultipliedLast.rawValue)!
+    ctx.interpolationQuality = .high
+    let scale = CGFloat(pixels) / 824
+    ctx.translateBy(x: 0, y: CGFloat(pixels))
+    ctx.scaleBy(x: scale, y: -scale)
+    ctx.translateBy(x: -100, y: -100)
+    drawIcon(ctx, fine: pixels >= 64)
+    return ctx.makeImage()!
+}
+
 func writePNG(_ image: CGImage, to url: URL) throws {
     let rep = NSBitmapImageRep(cgImage: image)
     rep.size = NSSize(width: image.width, height: image.height)
@@ -234,4 +249,5 @@ let contents: [String: Any] = ["images": images, "info": ["author": "xcode", "ve
 let json = try JSONSerialization.data(withJSONObject: contents, options: [.prettyPrinted, .sortedKeys])
 try json.write(to: iconSet.appendingPathComponent("Contents.json"))
 try writePNG(render(pixels: 512), to: repoRoot.appendingPathComponent("docs/logo.png"))
-print("Wrote \(sizes.count) icon sizes to \(iconSet.path) and docs/logo.png")
+try writePNG(renderTile(pixels: 64), to: repoRoot.appendingPathComponent("docs/favicon.png"))
+print("Wrote \(sizes.count) icon sizes to \(iconSet.path), docs/logo.png and docs/favicon.png")
