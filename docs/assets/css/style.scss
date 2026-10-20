@@ -1,0 +1,52 @@
+---
+---
+
+@import "{{ site.theme }}";
+
+// The download button on the home page.
+.download {
+  margin: 4px 0 14px;
+}
+
+.download-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 24px 12px 20px;
+  border-radius: 12px;
+  background: #2563eb;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.12), 0 8px 20px rgba(37, 99, 235, 0.28);
+  color: #fff;
+  font-size: 17px;
+  font-weight: 600;
+  line-height: 1.2;
+  transition: background-color 0.15s ease, box-shadow 0.15s ease, transform 0.15s ease;
+}
+
+.download-button:hover,
+.download-button:focus {
+  background: #1d4ed8;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.12), 0 10px 24px rgba(37, 99, 235, 0.36);
+  color: #fff;
+  font-weight: 600; // the theme makes links bold on hover
+  transform: translateY(-1px);
+}
+
+.download-button:active {
+  transform: none;
+}
+
+.download-button:focus-visible {
+  outline: 3px solid rgba(37, 99, 235, 0.45);
+  outline-offset: 3px;
+}
+
+.download-button svg {
+  width: 20px;
+  height: 20px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
