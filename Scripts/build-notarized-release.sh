@@ -100,6 +100,9 @@ print(c['keyID'], c['issuerID'], c['keyPath'])")
 xcrun notarytool submit "$DMG" --key "$KEY_PATH" --key-id "$KEY_ID" --issuer "$ISSUER_ID" --wait
 xcrun stapler staple "$DMG"
 xcrun stapler validate "$DMG"
+# A version-free copy of the stapled DMG for the site and README, which link to
+# releases/latest/download/ReadyForPickup.dmg (always the latest release's copy).
+cp "$DMG" "$WORK/ReadyForPickup.dmg"
 spctl -a -vvv -t open --context context:primary-signature "$DMG" || true
 
 # Generate + EdDSA-sign appcast entry for THIS version. Enclosure URL points
@@ -116,5 +119,5 @@ cp appcast.xml "$WORK/appcast/appcast.xml" 2>/dev/null || true
 if [[ -f "$WORK/appcast/appcast.xml" ]]; then cp "$WORK/appcast/appcast.xml" ./appcast.xml; fi
 python3 -c "import xml.dom.minidom,sys; xml.dom.minidom.parse('appcast.xml'); print('appcast.xml: well-formed XML')"
 shasum -a 256 "$DMG"
-echo "Done: $DMG"
+echo "Done: $DMG (and its version-free copy $WORK/ReadyForPickup.dmg; upload both)"
 echo "Appcast updated: $(pwd)/appcast.xml (review it; create the GitHub release first, then commit + push it)"

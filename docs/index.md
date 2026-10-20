@@ -4,9 +4,9 @@ ReadyForPickup is a macOS app that watches Apple Store pickup availability for i
 
 ## Download
 
-[Download the latest release](https://github.com/wehbs/ReadyForPickup/releases/latest)
+**[Download ReadyForPickup](https://github.com/wehbs/ReadyForPickup/releases/latest/download/ReadyForPickup.dmg)** (the latest version, as a `.dmg`)
 
-Download the `.dmg` from the latest release, open it, and drag ReadyForPickup into Applications. ReadyForPickup requires macOS 13 or later.
+Open the `.dmg` and drag ReadyForPickup into Applications. ReadyForPickup requires macOS 13 or later. Earlier versions and release notes are on the [Releases page](https://github.com/wehbs/ReadyForPickup/releases).
 
 ## What it does
 

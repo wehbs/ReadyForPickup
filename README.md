@@ -4,7 +4,7 @@ ReadyForPickup — a macOS app that watches Apple Store pickup availability for 
 
 ## Download
 
-Grab the latest built app from the **[Releases page](https://github.com/wehbs/ReadyForPickup/releases)** — download the `.dmg`, open it, and drag ReadyForPickup into Applications. Or use the project site: https://wehbs.github.io/ReadyForPickup/
+**[Download ReadyForPickup.dmg](https://github.com/wehbs/ReadyForPickup/releases/latest/download/ReadyForPickup.dmg)** (always the latest version), open it, and drag ReadyForPickup into Applications. Earlier versions and release notes are on the **[Releases page](https://github.com/wehbs/ReadyForPickup/releases)**. Or use the project site: https://wehbs.github.io/ReadyForPickup/
 
 > **Note:** builds from v0.3.1 onward are Developer ID-signed and notarized by Apple, so they open with a normal double-click (earlier builds, e.g. v0.3.0, were unsigned for distribution and needed Privacy & Security -> Open Anyway on first launch).
 
@@ -52,7 +52,7 @@ First refresh the bundled data (see [Store list and product catalog](#store-list
 Then run `Scripts/build-notarized-release.sh` (see its header). It checks the bundled data (`Scripts/check-bundled-data.py`), builds, signs Sparkle's nested code then the app, makes the DMG, notarizes (`notarytool submit --wait` — this can take hours; the submission ID is printed — if running detached, poll `xcrun notarytool info <id> --key … --key-id … --issuer …` every ~2 min, and on `Accepted` staple/validate and check `spctl` on the mounted app), staples, then generates/signs `appcast.xml` with Sparkle's `generate_appcast` (fails safe if the Sparkle tools are missing). Then, in order:
 
 1. Commit + push the version bump: both `MARKETING_VERSION` and `CURRENT_PROJECT_VERSION` (Sparkle compares the latter). Don't commit `appcast.xml` yet.
-2. `gh release create v<VERSION> /tmp/readyforpickup-release/ReadyForPickup-<VERSION>.dmg --repo wehbs/ReadyForPickup --target <bump commit SHA> --title "ReadyForPickup <VERSION>" --notes "…"` — **always pass `--repo wehbs/ReadyForPickup`** (`gh` otherwise defaults to the upstream worthbak repo here).
+2. `gh release create v<VERSION> /tmp/readyforpickup-release/ReadyForPickup-<VERSION>.dmg /tmp/readyforpickup-release/ReadyForPickup.dmg --repo wehbs/ReadyForPickup --target <bump commit SHA> --title "ReadyForPickup <VERSION>" --notes "…"` — **always pass `--repo wehbs/ReadyForPickup`** (`gh` otherwise defaults to the upstream worthbak repo here). Upload both files: Sparkle's feed points at the versioned DMG, and the site and the README link to the version-free `ReadyForPickup.dmg` through `releases/latest/download/ReadyForPickup.dmg`, which always serves the latest release's copy.
 3. Verify: the release asset downloads (HTTP 200), its SHA-256 matches the local DMG, and the mounted app passes `spctl -a -vvv` (`accepted source=Notarized Developer ID`). Note the DMG itself may show `spctl` "no usable signature" (it isn't codesigned) — the app inside is what matters.
 4. Commit + push the generated `appcast.xml`. This is what makes the update live, so it goes last: pushed earlier, the feed would point at a DMG that doesn't exist yet.
 5. Verify the live feed (`https://raw.githubusercontent.com/wehbs/ReadyForPickup/main/appcast.xml`, cached for up to 5 minutes) lists the new version with the right enclosure URL and signature.
