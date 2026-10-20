@@ -56,5 +56,3 @@ Then run `Scripts/build-notarized-release.sh` (see its header). It checks the bu
 3. Verify: the release asset downloads (HTTP 200), its SHA-256 matches the local DMG, and the mounted app passes `spctl -a -vvv` (`accepted source=Notarized Developer ID`). Note the DMG itself may show `spctl` "no usable signature" (it isn't codesigned) — the app inside is what matters.
 4. Commit + push the generated `appcast.xml`. This is what makes the update live, so it goes last: pushed earlier, the feed would point at a DMG that doesn't exist yet.
 5. Verify the live feed (`https://raw.githubusercontent.com/wehbs/ReadyForPickup/main/appcast.xml`, cached for up to 5 minutes) lists the new version with the right enclosure URL and signature.
-
-Do not delete old releases.
