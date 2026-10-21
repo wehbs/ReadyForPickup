@@ -201,6 +201,7 @@ struct ContentView: View {
                             ForEach(grouped, id: \.0.storeNumber) { store, parts in
                                 Section(store.storeName) {
                                     ForEach(parts.sorted(by: { $0.partName < $1.partName }), id: \.partNumber) { part in
+                                        let page = Country.with(code: search.countryCode)?.productPageURL(partNumber: part.partNumber)
                                         HStack {
                                             Text(part.partName)
                                             Spacer()
@@ -210,6 +211,16 @@ struct ContentView: View {
                                                     .padding(.horizontal, 7).padding(.vertical, 3)
                                                     .background(Capsule().fill(Color.blue))
                                             }
+                                            if let page {
+                                                Link(destination: page) {
+                                                    Label("View at Apple", systemImage: "arrow.up.right.square")
+                                                        .labelStyle(.iconOnly)
+                                                }
+                                                .help("View at Apple: opens this model's page in Apple's store")
+                                            }
+                                        }
+                                        .contextMenu {
+                                            if let page { Link("View at Apple", destination: page) }
                                         }
                                     }
                                 }

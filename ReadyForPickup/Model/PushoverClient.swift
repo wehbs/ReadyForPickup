@@ -91,7 +91,8 @@ enum PushoverError: LocalizedError {
 
 /// Single-attempt Pushover sender (no retry loop).
 struct PushoverClient {
-    static func send(title: String, message: String) async throws {
+    /// `url` is shown under the message as a link titled `urlTitle`.
+    static func send(title: String, message: String, url: URL? = nil, urlTitle: String? = nil) async throws {
         guard PushoverSettings.isConfigured else { throw PushoverError.notConfigured }
 
         // Pushover message limit is 1024 characters.
@@ -106,6 +107,11 @@ struct PushoverClient {
             URLQueryItem(name: "message", value: truncated),
             URLQueryItem(name: "priority", value: "0")
         ]
+        if let url {
+            components.queryItems?.append(URLQueryItem(name: "url", value: url.absoluteString))
+            // Pushover allows 100 characters of link title.
+            if let urlTitle { components.queryItems?.append(URLQueryItem(name: "url_title", value: String(urlTitle.prefix(100)))) }
+        }
 
         var request = URLRequest(url: URL(string: "https://api.pushover.net/1/messages.json")!)
         request.httpMethod = "POST"
@@ -124,14 +130,21 @@ struct PushoverClient {
     }
 
     /// Builds the stock-alert message from newly-available parts.
-    static func stockMessage(for search: SavedSearch, parts: [(FulfillmentStore, [PartAvailability])]) -> (title: String, message: String) {
+    /// The link goes to the first listed model's page in Apple's store (a
+    /// Pushover message holds one link).
+    static func stockMessage(for search: SavedSearch, parts: [(FulfillmentStore, [PartAvailability])])
+        -> (title: String, message: String, url: URL?, urlTitle: String?) {
         var lines: [String] = []
+        var first: PartAvailability?
         for (store, storeParts) in parts {
             for part in storeParts.sorted(by: { $0.partName < $1.partName }) {
+                if first == nil { first = part }
                 lines.append("\(part.partName) — \(store.storeName), \(store.locationDescription)")
             }
         }
+        let url = first.flatMap { Country.with(code: search.countryCode)?.productPageURL(partNumber: $0.partNumber) }
         return ("ReadyForPickup: \(search.productType.presentableName) in stock",
-                lines.joined(separator: "\n"))
+                lines.joined(separator: "\n"),
+                url, first.map { "View \($0.partName) at Apple" })
     }
 }

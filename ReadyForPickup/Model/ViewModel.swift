@@ -30,7 +30,7 @@ final class ViewModel: ObservableObject {
 
     // Auto-refresh (minutes; 0 = Off). Stored as
     // `preferredUpdateInterval` (shared with the Settings picker); only
-    // 0/5/10/15/30 are honoured - any other stored value is coerced to 5.
+    // 0/2/5/10/15/30 are honoured - any other stored value is coerced to 5.
     @Published var autoRefreshIntervalMinutes: Int = 5
     @Published var nextAutoRefreshAt: Date?
     @Published var throttledUntil: Date?
@@ -53,7 +53,7 @@ final class ViewModel: ObservableObject {
     private var lastNotifiedPreferredKeys: [UUID: Set<String>] = [:]
 
     /// Allowed auto-refresh intervals in minutes (0 = Off).
-    static let allowedIntervals = [0, 5, 10, 15, 30]
+    static let allowedIntervals = [0, 2, 5, 10, 15, 30]
 
     init() {
         searches = SearchStore.load()
@@ -433,8 +433,8 @@ final class ViewModel: ObservableObject {
 
     /// Counts one throttled cycle (a sweep, or a single-search refresh)
     /// and holds auto-refresh back until `throttledUntil`: the interval
-    /// (5 min when auto-refresh is Off) doubles per consecutive
-    /// throttled cycle, capped at 60 min.
+    /// (at least 5 min, also when auto-refresh is Off) doubles per
+    /// consecutive throttled cycle, capped at 60 min.
     private func registerThrottle(statusCode: Int, searchID: UUID) {
         throttleFailureCount += 1
         let base = TimeInterval(max(autoRefreshIntervalMinutes, 5) * 60)
@@ -525,7 +525,8 @@ final class ViewModel: ObservableObject {
             let alert = PushoverClient.stockMessage(for: search, parts: newParts)
             Task {
                 do {
-                    try await PushoverClient.send(title: alert.title, message: alert.message)
+                    try await PushoverClient.send(title: alert.title, message: alert.message,
+                                                  url: alert.url, urlTitle: alert.urlTitle)
                     logger.info("Pushover alert sent for \(search.productTypeRaw, privacy: .public)")
                 } catch {
                     logger.error("Pushover send failed: \(error.localizedDescription, privacy: .public)")

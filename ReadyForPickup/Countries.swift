@@ -38,4 +38,15 @@ struct Country: Hashable, Identifiable, Sendable {
     func storefrontPath(_ path: String) -> String {
         storePath.isEmpty ? "/\(path)" : "/\(storePath)/\(path)"
     }
+
+    /// Apple's page for one model in this country's store, which redirects to
+    /// the buy page with that configuration selected: /shop/product/MJQ34LL/A
+    /// opens /shop/buy-iphone/iphone-18-pro/6.3-inch-display-256gb-black.
+    func productPageURL(partNumber: String) -> URL? {
+        var components = URLComponents()
+        components.scheme = "https"
+        components.host = storeHost
+        components.path = storefrontPath("shop/product/\(partNumber)")
+        return components.url
+    }
 }

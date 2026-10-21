@@ -34,6 +34,7 @@ struct SettingsView: View {
 
             Picker("Auto-refresh every", selection: $preferredUpdateInterval) {
                 Text("Off").tag(0)
+                Text("2 minutes").tag(2)
                 Text("5 minutes").tag(5)
                 Text("10 minutes").tag(10)
                 Text("15 minutes").tag(15)
@@ -45,7 +46,7 @@ struct SettingsView: View {
                 // Apple is throttling requests.
                 model.restartAutoRefresh(withMinutes: newValue)
             }
-            Text("Searches refresh automatically, one after another, while the app is running - even with its window closed. To re-check now, use the toolbar refresh button or File > Refresh Selected Search (Cmd-R), or File > Refresh All Searches (Shift-Cmd-R); either also resets the schedule.")
+            Text("Searches refresh automatically, one after another, while the app is running - even with its window closed. To re-check now, use the toolbar refresh button or File > Refresh Selected Search (Cmd-R), or File > Refresh All Searches (Shift-Cmd-R); either also resets the schedule. If Apple starts refusing requests, the app waits longer between refreshes, up to an hour, until Apple answers again.")
                 .font(.caption).foregroundColor(.secondary)
 
             Divider()
